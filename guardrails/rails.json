@@ -1,0 +1,23 @@
+{
+  "input_spec": {
+    "type": "string",
+    "description": "User prompt input to the agent."
+  },
+  "output_spec": { 
+    "type": "string",
+    "description": "LLM-generated response."
+  },
+
+  "rails": [
+    {
+      "trigger": "on_input",
+      "if": "input.contains_profanity",
+      "then": "block"
+    },
+    {
+      "trigger": "on_output",
+      "if": "output.contains_hallucination",
+      "then": "warn_and_log"
+    }
+  ]
+}
